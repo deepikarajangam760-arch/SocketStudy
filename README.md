@@ -53,49 +53,59 @@ Socket programming finds applications in various domains, including web developm
 4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 ```
-   
-socket()
-bind()
-listen()
-accept()
-connect()
-send()
-recv()
-sendall()
-close()
-getsockname()
+
+1. socket()
+
+Creates a new socket for network communication.
+It is used to establish communication between two devices.
+
+2. bind()
+
+Assigns an IP address and port number to the socket.
+It is mainly used by the server.
+
+3. listen()
+
+Makes the server ready to accept incoming client connections.
+It waits for connection requests from clients.
+
+4. accept()
+
+Accepts an incoming connection request from a client.
+It returns a new socket for communicating with that client.
+
+5. connect()
+
+Connects the client socket to the server.
+It uses the server's IP address and port number.
+
+6. send()
+
+Sends data through an established socket connection.
+The data is usually converted into bytes using encode().
+
+7. recv()
+
+Receives data from the connected socket.
+It returns the received data in the form of bytes.
+
+8. sendall()
+
+Sends the complete data through the socket.
+It ensures that all the given data is sent.
+
+9. close()
+
+Closes the socket connection.
+It releases the resources used by the socket.
+
+10. getsockname()
+
+Returns the local IP address and port number of the socket.
+It is used to find the address assigned to the socket.
+
 ```
 
-## Program:
-## client:
-```
-import socket
-from datetime import datetime
-s=socket.socket()
-s.bind(('localhost',8000))
-s.listen(5)
-c,addr=s.accept()
-print("Client Adddress : ",addr)
-now = datetime.now()
-c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
-ack=c.recv(1024).decode()
-if ack:
-    print(ack)
-    c.close()
-```
-## Server:
-```
-import socket
-s=socket.socket()
-s.connect(('localhost',8000))
-print(s.getsockname())
-print(s.recv(1024).decode())
-s.send("acknowledgement recived from the server".encode())
-```
-
-## Output:
-
-<img width="1920" height="1080" alt="Screenshot 2026-08-06 224805" src="https://github.com/user-attachments/assets/6b02f87b-67d2-47b4-bbee-8771d883892a" />
 
 
 ## Result:
